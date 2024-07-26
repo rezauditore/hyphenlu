@@ -19,14 +19,16 @@ To use the Hyphenlu Tool, simply run the following command:
 
 `go run hyphenlu.go [-h] [-f <hyphen count>] <filename>`
 
+# Switches
+
 `-h` : Show this help message and exit.
 `-f` : Filter subdomains by hyphen count.
-`<filename>` : The file containing the list of subdomains
+`<filename>` : The file containing the list of subdomains.
 
 # Examples
 
-`go run main.go example.txt` : Analyze the subdomains in example.txt and print the results
-`go run main.go -f 2 example.txt` : Filter the subdomains in example.txt to only show those with `2` hyphens
+1. `go run main.go example.txt` : Analyze the subdomains in example.txt and print the results. 
+2. `go run main.go -f 2 example.txt` : Filter the subdomains in example.txt to only show those with `2` hyphens.
 
 # Installation
 
