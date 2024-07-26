@@ -8,10 +8,10 @@ This tool is designed to make it easy to analyze subdomains and identify the num
 
 # Features
 
-Detects hyphens in a list of subdomains
-Provides detailed information about the file, including the minimum and maximum number of hyphens
-Allows filtering by hyphen count using the `-f` flag
-Supports parallel processing for large files
+Detects hyphens in a list of subdomains.
+Provides detailed information about the file, including the minimum and maximum number of hyphens.
+Allows filtering by hyphen count using the `-f` flag.
+Supports parallel processing for large files.
 
 # Usage
 
@@ -19,8 +19,8 @@ To use the Hyphenlu Tool, simply run the following command:
 
 `go run hyphenlu.go [-h] [-f <hyphen count>] <filename>`
 
-`-h` : Show this help message and exit
-`-f` : Filter subdomains by hyphen count
+`-h` : Show this help message and exit.
+`-f` : Filter subdomains by hyphen count.
 `<filename>` : The file containing the list of subdomains
 
 # Examples
