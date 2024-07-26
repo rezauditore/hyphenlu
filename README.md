@@ -1,6 +1,6 @@
 # hyphenlu
 
-A command-line tool for detecting hyphens in a list of subdomains.
+A command-line tool for detecting hyphens in a list of subdomains :)
 
 # About
 
