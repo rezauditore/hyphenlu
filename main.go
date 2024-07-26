@@ -44,7 +44,8 @@ func printHelp() {
         fmt.Println()
         fmt.Println("  Filtered Run: go run main.go -f <hyphen count> <filename>")
         fmt.Println("    Provides a list of subdomains with the specified number of hyphens.")
-        fmt.Println("github.com/rezauditore/hyphenlu")
+        fmt.Println()
+        fmt.Println("GitHub: github.com/rezauditore/hyphenlu")
 }
 
 func main() {
